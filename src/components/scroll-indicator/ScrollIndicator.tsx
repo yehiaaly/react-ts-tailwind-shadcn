@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Item, ItemTitle } from "@/components/ui/item";
 
 interface propsType {
   url: string;
@@ -73,29 +74,36 @@ const ScrollIndicator = ({ url }: propsType) => {
           style={{ width: `${progress}%` }}
         />
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Scroll Indicator</CardTitle>
-          <CardDescription>
-            This is a feature to show the functionality of a scroll indicator
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div>
-            {data?.length > 0
-              ? data.map((item, index) => (
-                  <p
-                    key={item.id}
-                    className="border-muted border-b py-2 last:border-0"
-                  >
-                    <span className="font-semibold">{index + 1}.</span>{" "}
-                    {item.title}
-                  </p>
-                ))
-              : null}
-          </div>
-        </CardContent>
-      </Card>
+
+      {loading ? (
+        <Item>
+          <ItemTitle>Loading...</ItemTitle>
+        </Item>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Scroll Indicator</CardTitle>
+            <CardDescription>
+              This is a feature to show the functionality of a scroll indicator
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div>
+              {data?.length > 0
+                ? data.map((item, index) => (
+                    <p
+                      key={item.id}
+                      className="border-muted border-b py-2 last:border-0"
+                    >
+                      <span className="font-semibold">{index + 1}.</span>{" "}
+                      {item.title}
+                    </p>
+                  ))
+                : null}
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
