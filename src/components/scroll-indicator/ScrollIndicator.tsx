@@ -2,10 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import type { ProductResponse, Product } from "./dataType";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -18,7 +16,7 @@ interface propsType {
 const ScrollIndicator = ({ url }: propsType) => {
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+
   const [progress, setProgress] = useState(0);
 
   const fetchList = useCallback(async (getUrl: string) => {
@@ -35,7 +33,6 @@ const ScrollIndicator = ({ url }: propsType) => {
     } catch (error) {
       setLoading(false);
       console.error(error);
-      setErrorMsg("Bad Request!");
     } finally {
       setLoading(false);
     }
